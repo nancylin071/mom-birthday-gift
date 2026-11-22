@@ -493,8 +493,9 @@ img { max-width: 100%; }
 .scene-letter.is-active .letter > .divider { transition-delay: .6s; }
 .scene-letter.is-active .letter > .letter-body { transition-delay: .8s; }
 .scene-letter.is-active .letter > .letter-sign { transition-delay: 1.3s; }
-.scene-letter .btn { opacity: 0; transition: opacity .8s var(--ease) 1.6s; }
-.scene-letter.is-active .btn { opacity: 1; }
+/* 按鈕由程式計時後才出現並可點，避免誤觸跳過祝福 */
+.scene-letter .btn { opacity: 0; visibility: hidden; }
+.scene-letter .btn.is-ready { opacity: 1; visibility: visible; transition: opacity .8s var(--ease), transform .2s var(--ease); }
 
 /* ===== Scene 3：禮券 ===== */
 .voucher {
@@ -703,8 +704,9 @@ img { max-width: 100%; }
   align-items: center;
   gap: 12px;
   opacity: 0;
+  visibility: hidden;
 }
-.scene-voucher.is-active .actions { opacity: 1; transition: opacity .8s var(--ease) 2.9s; }
+.actions.is-ready { opacity: 1; visibility: visible; transition: opacity .8s var(--ease); }
 
 /* ===== 保存視窗 ===== */
 .sheet {

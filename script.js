@@ -48,9 +48,28 @@
     return scene.querySelector("[tabindex='-1']") || scene.querySelector("button");
   }
 
+  /* 每個場景的按鈕要等內容出現後才可點（毫秒） */
+  var readyItems = [
+    { scene: scenes.letter, el: $("btn-reveal"), delay: 1600 },
+    { scene: scenes.voucher, el: document.querySelector(".actions"), delay: 2900 }
+  ];
+  var readyTimers = [];
+
+  function armReady(scene) {
+    readyTimers.forEach(clearTimeout);
+    readyTimers = [];
+    readyItems.forEach(function (it) {
+      it.el.classList.remove("is-ready");
+      if (it.scene === scene) {
+        readyTimers.push(setTimeout(function () { it.el.classList.add("is-ready"); }, reduceMotion ? 0 : it.delay));
+      }
+    });
+  }
+
   function goTo(next, focusEl) {
     var prev = current;
     prev.classList.remove("is-active");
+    armReady(null);
     return wait(550).then(function () {
       prev.hidden = true;
       next.hidden = false;
@@ -59,6 +78,7 @@
     }).then(function () {
       next.classList.add("is-active");
       current = next;
+      armReady(next);
       var el = focusEl || focusTarget(next);
       if (el) { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }
     });
@@ -85,14 +105,14 @@
 
   /* Scene 2 → 3：揭曉禮券（必須由媽媽自己按） */
   $("btn-reveal").addEventListener("click", function () {
-    if (busy) return;
+    if (busy || !this.classList.contains("is-ready")) return;
     busy = true;
     goTo(scenes.voucher).then(function () { busy = false; });
   });
 
   /* 重新拆一次 */
   $("btn-replay").addEventListener("click", function () {
-    if (busy) return;
+    if (busy || !this.parentNode.classList.contains("is-ready")) return;
     busy = true;
     /* 信封場景此時是隱藏的，先復原狀態，顯示時不會倒播動畫 */
     envelope.classList.remove("is-open", "is-lifting");
@@ -130,7 +150,10 @@
     }).catch(function () { /* 不支援時保留長按與下載 */ });
   }
 
+  var sheetTimer = null;
+
   function openSheet() {
+    clearTimeout(sheetTimer);
     sheet.hidden = false;
     document.body.style.overflow = "hidden";
     prepareShare();
@@ -142,15 +165,20 @@
   }
 
   function closeSheet() {
+    if (!sheet.classList.contains("is-open")) return;
     sheet.classList.remove("is-open");
     document.body.style.overflow = "";
-    wait(350).then(function () {
+    clearTimeout(sheetTimer);
+    sheetTimer = setTimeout(function () {
       sheet.hidden = true;
       btnSave.focus();
-    });
+    }, reduceMotion ? 0 : 350);
   }
 
-  btnSave.addEventListener("click", openSheet);
+  btnSave.addEventListener("click", function () {
+    if (busy || !this.parentNode.classList.contains("is-ready")) return;
+    openSheet();
+  });
   sheet.addEventListener("click", function (e) {
     if (e.target.closest("[data-close]")) closeSheet();
   });
@@ -162,19 +190,23 @@
         sheet.querySelectorAll("button, a[href]"),
         function (el) { return !el.hidden && el.offsetParent !== null; }
       );
+      items = Array.prototype.slice.call(items);
       if (!items.length) return;
       var first = items[0], last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      var inside = items.indexOf(document.activeElement) !== -1;
+      if (e.shiftKey && (document.activeElement === first || !inside)) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
 
   btnShare.addEventListener("click", function () {
     if (!shareFile) return;
-    navigator.share({ files: [shareFile], title: "媽媽專屬變美基金" }).catch(function (err) {
-      if (err && err.name !== "AbortError") {
-        hint.textContent = "這個瀏覽器無法直接分享，請長按圖片儲存，或按「下載圖片」。";
-      }
-    });
+    function fail(err) {
+      if (err && err.name === "AbortError") return; /* 使用者自己取消分享 */
+      hint.textContent = "這個瀏覽器無法直接分享，請長按圖片儲存，或按「下載圖片」。";
+    }
+    try {
+      navigator.share({ files: [shareFile], title: "媽媽專屬變美基金" }).catch(fail);
+    } catch (err) { fail(err); }
   });
 })();
