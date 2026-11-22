@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>gift card render</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@400;600;700&display=block">
+<style>
+  :root { --paper:#FFFCF7; --gold:#B89562; --gold-dark:#8E6C43; --text:#493B30; --muted:#796A5B; --border:#D9C5A8;
+    --zh:"Noto Serif TC","Songti TC",serif; --en:"Cormorant Garamond","Didot",serif; }
+  * { box-sizing:border-box; margin:0; }
+  html,body { width:1200px; height:800px; overflow:hidden; }
+  body { background:#F7F1E8; font-family:var(--zh); color:var(--text); -webkit-font-smoothing:antialiased; }
+  .card { position:absolute; inset:0; padding:70px 84px;
+    background: radial-gradient(ellipse at 30% 0%, rgba(230,211,179,.35), rgba(230,211,179,0) 55%), var(--paper);
+    display:grid; grid-template-columns: 1.25fr auto 1fr; align-items:center; column-gap:56px; }
+  .b1 { position:absolute; inset:22px; border:1.5px solid rgba(184,149,98,.6); }
+  .b2 { position:absolute; inset:29px; border:1px solid rgba(184,149,98,.3); }
+  .c { position:absolute; width:34px; height:34px; border:0 solid var(--gold); }
+  .tl{top:40px;left:40px;border-top-width:1.5px;border-left-width:1.5px}
+  .tr{top:40px;right:40px;border-top-width:1.5px;border-right-width:1.5px}
+  .bl{bottom:40px;left:40px;border-bottom-width:1.5px;border-left-width:1.5px}
+  .br{bottom:40px;right:40px;border-bottom-width:1.5px;border-right-width:1.5px}
+  .left { text-align:center; }
+  .en { font-family:var(--en); font-weight:600; font-size:46px; letter-spacing:.14em; padding-left:.14em; line-height:1.1; }
+  .occ { margin-top:12px; font-family:var(--en); font-weight:600; font-size:17px; letter-spacing:.42em; padding-left:.42em; color:var(--gold-dark); }
+  .title { margin-top:34px; font-size:40px; font-weight:700; letter-spacing:.16em; padding-left:.16em; }
+  .amt { margin-top:14px; font-family:var(--en); font-weight:600; color:var(--gold-dark); line-height:1; white-space:nowrap; }
+  .amt .cur { font-size:44px; margin-right:8px; }
+  .amt .num { font-size:128px; font-feature-settings:"lnum" 1; }
+  .core { margin-top:26px; font-size:24px; font-weight:600; line-height:1.75; }
+  .vr { width:1px; height:520px; background:linear-gradient(rgba(184,149,98,0), rgba(184,149,98,.7) 20%, rgba(184,149,98,.7) 80%, rgba(184,149,98,0)); }
+  .right { text-align:left; }
+  .h { font-size:18px; font-weight:600; letter-spacing:.32em; color:var(--gold-dark); }
+  .u { margin-top:14px; font-size:20px; line-height:1.85; color:var(--muted); }
+  .u + .u { margin-top:14px; }
+  .nl { display:inline-block; margin-top:22px; padding:5px 22px; border:1px solid var(--border); border-radius:999px; font-size:19px; font-weight:600; letter-spacing:.16em; color:var(--gold-dark); }
+  .sign { margin-top:44px; }
+  .with { font-family:var(--en); font-weight:600; font-size:16px; letter-spacing:.38em; color:var(--gold-dark); }
+  .names { margin-top:6px; font-family:var(--en); font-style:italic; font-weight:500; font-size:34px; letter-spacing:.02em; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="b1"></span><span class="b2"></span>
+  <span class="c tl"></span><span class="c tr"></span><span class="c bl"></span><span class="c br"></span>
+  <div class="left">
+    <p class="en">A GIFT FOR MOM</p>
+    <p class="occ">HAPPY BIRTHDAY</p>
+    <p class="title">媽媽專屬變美基金</p>
+    <p class="amt"><span class="cur">NT$</span><span class="num">36,000</span></p>
+    <p class="core">想變漂亮，還是想變健康，<br>都由妳決定。</p>
+  </div>
+  <span class="vr"></span>
+  <div class="right">
+    <p class="h">使用方式</p>
+    <p class="u">可用於醫美諮詢、適合的抗老療程、<br>專業體重管理，或其他健康保養計畫。</p>
+    <p class="u">先確認適合的方式，<br>再由我們三個負責買單。</p>
+    <p class="nl">不限使用日期</p>
+    <div class="sign">
+      <p class="with">WITH LOVE,</p>
+      <p class="names">Steven · Kevin · Nancy</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
