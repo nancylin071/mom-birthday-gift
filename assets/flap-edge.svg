@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+<polyline points="0,0 50,100 100,0" fill="none" stroke="#A8844F" stroke-opacity=".7" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
+<polyline points="5,0 50,90 95,0" fill="none" stroke="#C9A86E" stroke-opacity=".55" stroke-width="1" vector-effect="non-scaling-stroke"/>
+</svg>

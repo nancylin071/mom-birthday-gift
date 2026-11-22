@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>og render</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@400;600;700&display=block">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+TC:wght@400;600;700&display=block">
 <link rel="stylesheet" href="../style.css">
 <style>
   html,body { width:1200px; height:630px; overflow:hidden; min-height:0; }
@@ -13,23 +13,24 @@
   .txt { text-align:left; }
   .txt .eyebrow { font-size:20px; padding-left:0; }
   .txt .title-zh { font-size:52px; margin-top:22px; }
-  .txt .from { margin-top:22px; font-family:var(--serif-en); font-style:italic; font-size:30px; color:var(--gold-dark); }
+  .txt .from { font-weight:600; margin-top:22px; font-family:var(--serif-en); font-style:italic; font-size:30px; color:var(--gold-dark); }
 </style>
 </head>
 <body>
-<div class="frame"></div>
+<div class="frame"><span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span></div>
 <div class="wrap">
   <div class="envelope" style="cursor:default">
     <span class="env-back"></span>
-    <span class="env-letter"><span class="env-letter-line">HAPPY BIRTHDAY</span><span class="env-letter-rule"></span></span>
+    <span class="env-letter"><img class="env-letter-crest" src="../assets/crest.svg" alt=""><span class="env-letter-line">HAPPY BIRTHDAY</span><span class="env-letter-rule"></span></span>
     <span class="env-pocket"></span>
-    <span class="env-flap"><span class="env-flap-inner"></span></span>
-    <span class="env-seal"><span>M</span></span>
+    <span class="env-flap"><span class="env-flap-face"></span><span class="env-flap-lining"></span></span>
+    <span class="env-seal"><span class="env-seal-m">M</span></span>
   </div>
   <div class="txt">
-    <p class="eyebrow">A SPECIAL GIFT FOR MOM</p>
+    <img class="crest" src="../assets/crest.svg" alt="" style="margin:0 0 14px;width:110px">
+    <p class="eyebrow foil-dark">A SPECIAL GIFT FOR MOM</p>
     <p class="title-zh">媽媽，生日快樂！</p>
-    <p class="from">from Steven · Kevin · Nancy</p>
+    <p class="from foil">from Steven · Kevin · Nancy</p>
   </div>
 </div>
 </body>

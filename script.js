@@ -14,6 +14,25 @@
     return new Promise(function (r) { setTimeout(r, 30); });
   }
 
+  /* 金額旁的金粉：位置固定、只飄一次 */
+  (function makeDust() {
+    var box = document.querySelector(".dust");
+    if (!box || reduceMotion) return;
+    var specks = [
+      [6, 62, 2.2], [14, 18, 2.5], [22, 78, 2.35], [33, 8, 2.7], [46, 86, 2.45],
+      [58, 12, 2.3], [67, 74, 2.6], [78, 24, 2.4], [86, 66, 2.75], [94, 30, 2.5],
+      [40, 40, 2.9], [72, 48, 3.0]
+    ];
+    specks.forEach(function (s, i) {
+      var el = document.createElement("i");
+      el.style.left = s[0] + "%";
+      el.style.top = s[1] + "%";
+      el.style.setProperty("--d", s[2] + "s");
+      if (i % 3 === 0) { el.style.width = el.style.height = "7px"; }
+      box.appendChild(el);
+    });
+  })();
+
   var scenes = {
     envelope: $("scene-envelope"),
     letter: $("scene-letter"),

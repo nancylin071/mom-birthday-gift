@@ -16,43 +16,53 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Serif+TC:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Noto+Serif+TC:wght@400;600;700&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="frame" aria-hidden="true"></div>
+  <div class="frame" aria-hidden="true">
+    <span class="fc tl"></span><span class="fc tr"></span><span class="fc bl"></span><span class="fc br"></span>
+  </div>
 
   <main class="stage">
 
     <!-- Scene 1：信封 -->
     <section class="scene scene-envelope is-active" id="scene-envelope" aria-labelledby="t-envelope">
-      <p class="eyebrow">A SPECIAL GIFT FOR MOM</p>
+      <img class="crest" src="assets/crest.svg" alt="" width="120" height="40">
+      <p class="eyebrow foil-dark">A SPECIAL GIFT FOR MOM</p>
 
       <button type="button" class="envelope" id="envelope" aria-label="拆開生日禮物">
         <span class="env-back"></span>
         <span class="env-letter">
+          <img class="env-letter-crest" src="assets/crest.svg" alt="" width="120" height="40">
           <span class="env-letter-line">HAPPY BIRTHDAY</span>
           <span class="env-letter-rule"></span>
         </span>
         <span class="env-pocket"></span>
-        <span class="env-flap"><span class="env-flap-inner"></span></span>
-        <span class="env-seal"><span>M</span></span>
+        <span class="env-flap">
+          <span class="env-flap-face"></span>
+          <span class="env-flap-lining"></span>
+        </span>
+        <span class="env-seal"><span class="env-seal-m">M</span></span>
       </button>
 
       <h1 class="title-zh" id="t-envelope">媽媽，生日快樂！</h1>
+      <span class="divider" aria-hidden="true"></span>
 
-      <button type="button" class="btn btn-primary" id="btn-open">拆開生日禮物</button>
+      <button type="button" class="btn btn-primary" id="btn-open"><span>拆開生日禮物</span></button>
     </section>
 
     <!-- Scene 2：祝福 -->
     <section class="scene scene-letter" id="scene-letter" aria-labelledby="t-letter" hidden>
       <article class="paper letter">
+        <span class="paper-rule" aria-hidden="true"></span>
         <span class="corner tl" aria-hidden="true"></span>
         <span class="corner tr" aria-hidden="true"></span>
         <span class="corner bl" aria-hidden="true"></span>
         <span class="corner br" aria-hidden="true"></span>
 
-        <p class="eyebrow small">HAPPY BIRTHDAY</p>
+        <img class="crest" src="assets/crest.svg" alt="" width="120" height="40">
+        <p class="eyebrow small foil-dark">HAPPY BIRTHDAY</p>
         <h2 class="letter-title" id="t-letter" tabindex="-1">媽媽，生日快樂！</h2>
         <span class="divider" aria-hidden="true"></span>
 
@@ -62,10 +72,10 @@
           <p>不管是想變漂亮，<br>還是想讓自己更健康，<br>都由妳自己決定。</p>
         </div>
 
-        <p class="letter-sign">Steven · Kevin · Nancy</p>
+        <p class="letter-sign foil-dark">Steven · Kevin · Nancy</p>
       </article>
 
-      <button type="button" class="btn btn-primary" id="btn-reveal">看看我們準備了什麼</button>
+      <button type="button" class="btn btn-primary" id="btn-reveal"><span>看看我們準備了什麼</span></button>
     </section>
 
     <!-- Scene 3 + 4：禮券 -->
@@ -77,13 +87,14 @@
         <span class="corner bl" aria-hidden="true"></span>
         <span class="corner br" aria-hidden="true"></span>
 
-        <p class="v-en">A GIFT FOR MOM</p>
+        <img class="crest v-crest" src="assets/crest.svg" alt="" width="120" height="40">
+        <p class="v-en foil-dark">A GIFT FOR MOM</p>
         <p class="v-occasion">HAPPY BIRTHDAY</p>
         <h2 class="v-title" id="t-voucher" tabindex="-1">媽媽專屬變美基金</h2>
 
         <p class="v-amount" aria-label="新台幣三萬六千元">
-          <span class="v-currency">NT$</span><span class="v-number">36,000</span>
-          <span class="v-sheen" aria-hidden="true"></span>
+          <span class="v-currency foil">NT$</span><span class="v-number foil">36,000</span>
+          <span class="dust" aria-hidden="true"></span>
         </p>
 
         <p class="v-core"><span class="ln">想變漂亮，還是想變健康，</span><br><span class="ln">都由妳決定。</span></p>
@@ -99,12 +110,12 @@
 
         <div class="v-sign">
           <p class="v-with">WITH LOVE,</p>
-          <p class="v-names">Steven · Kevin · Nancy</p>
+          <p class="v-names foil-dark">Steven · Kevin · Nancy</p>
         </div>
       </article>
 
       <div class="actions">
-        <button type="button" class="btn btn-primary" id="btn-save">保存生日禮券</button>
+        <button type="button" class="btn btn-primary" id="btn-save"><span>保存生日禮券</span></button>
         <button type="button" class="btn btn-ghost" id="btn-replay">重新拆一次</button>
       </div>
     </section>
@@ -119,7 +130,7 @@
       <img class="sheet-img" src="assets/gift-card.png" width="2400" height="1600"
            alt="媽媽專屬變美基金 NT$36,000 生日禮券，Steven、Kevin、Nancy 敬贈">
       <div class="sheet-actions">
-        <button type="button" class="btn btn-primary" id="btn-share" hidden>分享或儲存圖片</button>
+        <button type="button" class="btn btn-primary" id="btn-share" hidden><span>分享或儲存圖片</span></button>
         <a class="btn btn-ghost" id="btn-download" href="assets/gift-card.png" download="媽媽專屬變美基金-生日禮券.png">下載圖片</a>
         <button type="button" class="btn btn-text" data-close>關閉</button>
       </div>
